@@ -38,6 +38,16 @@ def show():
     alltodo = Todo.query.all()
     print(alltodo)  
     return "heyy"
+@app.route('/delete/<int:Sno>')
+def update():
+    alltodo = Todo.query.all()
+    print(alltodo)  
+    return "heyy"
+@app.route('/update')
+def delete():
+    alltodo = Todo.query.all()
+    print(alltodo)  
+    return "heyy"
 
 
 if __name__ == "__main__":
