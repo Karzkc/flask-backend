@@ -38,19 +38,31 @@ def show():
     alltodo = Todo.query.all()
     print(alltodo)  
     return "heyy"
+
+
+@app.route('/update/<int:Sno>', methods=['GET', 'POST'])
+def update(Sno):
+    todo = Todo.query.filter_by(Sno=Sno).first()  # Renaming to 'todo'
+    if request.method == 'POST':
+        todo.ToDo = request.form['title']
+        todo.Desc = request.form['desc']
+        db.session.commit()
+        return redirect('/')
+    return render_template('update.html', todo=todo)  # Passing 'todo' instead of 'alltodo'
+
+    
+
 @app.route('/delete/<int:Sno>')
-def update():
-    alltodo = Todo.query.all()
-    print(alltodo)  
-    return "heyy"
-@app.route('/update')
-def delete():
-    alltodo = Todo.query.all()
-    print(alltodo)  
-    return "heyy"
+def delete(Sno):
+    alltodo = Todo.query.filter_by(Sno=Sno).first()
+    db.session.delete(alltodo)
+    db.session.commit()
+    return redirect("/")
 
 
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+
+
