@@ -1,7 +1,7 @@
 from flask import Flask, render_template , request , redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
+# use this code in command panel to launch app - .\.git\.venv\Scripts\Activate.ps1
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///todos.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
